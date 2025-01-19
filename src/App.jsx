@@ -5,9 +5,26 @@ import ChatMessage from "./components/ChatMessage";
 
 function App() {
   const [chatHistory, setChatHistory] = useState([]);
-  const generateBotResponse = (history) => {
-console.log(history);
-  }
+  const generateBotResponse = async (history) => {
+    history = history.map(({role, text}) => ({role, parts: [{text}]}))
+
+    const requestOptions = {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({contents : history})
+    }
+
+    try{
+      const response = await fetch(import.meta.env.VITE_Chatbot_API_URL, requestOptions);
+      const data = await response.json();
+      if(!response.ok) throw new Error(data.error.message || "Something went wrong.");
+      console.log(data); 
+    }catch(error){
+      console.log(error);
+    }
+  };
+
+  
 
   return (
     <div className="container">
@@ -29,15 +46,16 @@ console.log(history);
             </p>
           </div>
 
-          {chatHistory.map((chat,index)=>(
-            <ChatMessage key={index} chat={chat}/>
+          {chatHistory.map((chat, index) => (
+            <ChatMessage key={index} chat={chat} />
           ))}
-          
         </div>
 
-        
-       <ChatForm chatHistory={chatHistory} setChatHistory={setChatHistory} generateBotResponse= {generateBotResponse}/>
-       
+        <ChatForm
+          chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
+          generateBotResponse={generateBotResponse}
+        />
       </div>
     </div>
   );
