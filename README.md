@@ -103,7 +103,8 @@ chatbot/
 
 ## Screenshots
 
-_Add screenshots here to showcase the application interface and features._
+![Home Page](src/assets/Img1.png)
+
 
 ---
 
