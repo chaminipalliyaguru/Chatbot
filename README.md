@@ -23,6 +23,16 @@ Before running the project, ensure you have the following installed:
 
 ---
 
+
+## Technologies Used
+
+- **Frontend**: React, CSS
+- **Backend**: Node.js, Express
+- **AI Integration**: Azure OpenAI
+- **Hosting**: Localhost (Development)
+
+---
+
 ## Installation
 
 1. Clone the repository:
@@ -55,7 +65,7 @@ Before running the project, ensure you have the following installed:
    ```env
    AZURE_OPENAI_API_KEY=your_azure_api_key
    AZURE_OPENAI_ENDPOINT=your_azure_endpoint
-   PORT=5000
+   PORT=3000
    ```
 
 2. Update the API URL in the `client` directory to match your backend endpoint.
@@ -104,16 +114,6 @@ chatbot/
 ## Screenshots
 
 ![Home Page](src/assets/Img1.png)
-
-
----
-
-## Technologies Used
-
-- **Frontend**: React, CSS
-- **Backend**: Node.js, Express
-- **AI Integration**: Azure OpenAI
-- **Hosting**: Localhost (Development)
 
 ---
 
