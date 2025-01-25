@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function ChatForm({ chatHistory, setChatHistory, generateBotResponse }) {
+function ChatForm({ generateBotResponse }) {
   const inputRef = useRef();
 
   const handleFormSubmit = (e) => {
@@ -9,20 +9,8 @@ function ChatForm({ chatHistory, setChatHistory, generateBotResponse }) {
     if (!userMessage) return;
     inputRef.current.value = "";
 
-    //update chat history with the user's message
-    setChatHistory((history) => [
-      ...history,
-      { role: "user", text: userMessage },
-    ]);
-
-    //Add a thnking word
-    setTimeout(() => {setChatHistory((history) => [
-        ...history,
-        { role: "model", text: "Thinking..." }
-      ]);
-
-      generateBotResponse([...chatHistory,{ role: "user", text: userMessage }])
-    },600);
+    // Call generateBotResponse with the user's input
+    generateBotResponse(userMessage);
   };
 
   return (
@@ -35,7 +23,9 @@ function ChatForm({ chatHistory, setChatHistory, generateBotResponse }) {
           className="message-input"
           required
         />
-        <button className="material-symbols-outlined">arrow_upward</button>
+        <button type="submit" className="material-symbols-outlined">
+          arrow_upward
+        </button>
       </form>
     </div>
   );
